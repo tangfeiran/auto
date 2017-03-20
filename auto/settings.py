@@ -25,7 +25,7 @@ SECRET_KEY = '#!=c=^yzv3hiy6!psg2bm!#lk#dr&sz&ggh(vke54+r_s_(38z'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['172.16.10.53']
 
 
 # Application definition
@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Add "ws4redis" to your project's INSTALLED_APPS setting
+    # http://django-websocket-redis.readthedocs.io/en/latest/installation.html
+    'ws4redis',
+    'wsapp',
 ]
 
 MIDDLEWARE = [
@@ -62,12 +66,15 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # Ensure that your template context contains at least these processors
+                'ws4redis.context_processors.default',
+                # 'django.core.context_processors.static',
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'auto.wsgi.application'
+# WSGI_APPLICATION = 'auto.wsgi.application'
 
 
 # Database
@@ -118,3 +125,27 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Specify the URL that distinguishes websocket connections from normal requests
+
+# http://django-websocket-redis.readthedocs.io/en/latest/installation.html
+WEBSOCKET_URL = '/ws/'
+# If the Redis datastore uses connection settings other than the defaults, use this dictionary to override these values
+WS4REDIS_CONNECTION = {
+    'host': 'localhost',
+    'port': 6379,
+    'db': 8,
+    # 'password': 'verysecret',
+}
+# This directive sets the number in seconds, each received message is persisted by Redis, additionally of being published on the message queue
+WS4REDIS_EXPIRE = 7200
+# Websocket for Redis can prefix each entry in the datastore with a string. By default, this is empty.
+WS4REDIS_PREFIX = 'ws'
+# Override ws4redis.store.RedisStore with a customized class, in case you need an alternative implementation of that class
+# WS4REDIS_SUBSCRIBER = 'myapp.redis_store.RedisSubscriber'
+# This directive is required during development and ignored in production environments. It overrides Django's internal main loop and adds a URL dispatcher in front of the request handler
+WSGI_APPLICATION = 'ws4redis.django_runserver.application'
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'statics')]
+
+WS4REDIS_HEARTBEAT = "ws4redis_heartbeat"

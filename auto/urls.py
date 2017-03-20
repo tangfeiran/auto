@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.shortcuts import render_to_response
+from wsapp.views import MyTypicalView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', lambda request: render_to_response("index.html")),
+    url(r'^send2$', MyTypicalView.as_view()),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
