@@ -9,6 +9,9 @@ except ImportError:
     from ansible.utils.display import Display
     display = Display()
 
+class MyCallbackModule(CallbackModule):
+    pass
+
 class ExtendCallback(CallbackModule):
     """重写console输出日志"""
 

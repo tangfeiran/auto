@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     # Add "ws4redis" to your project's INSTALLED_APPS setting
     # http://django-websocket-redis.readthedocs.io/en/latest/installation.html
     'ws4redis',
-    'wsapp',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -138,7 +138,8 @@ WS4REDIS_CONNECTION = {
     # 'password': 'verysecret',
 }
 # This directive sets the number in seconds, each received message is persisted by Redis, additionally of being published on the message queue
-WS4REDIS_EXPIRE = 7200
+# WS4REDIS_EXPIRE = 7200
+WS4REDIS_EXPIRE = 0
 # Websocket for Redis can prefix each entry in the datastore with a string. By default, this is empty.
 WS4REDIS_PREFIX = 'ws'
 # Override ws4redis.store.RedisStore with a customized class, in case you need an alternative implementation of that class
