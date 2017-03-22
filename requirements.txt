@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 django>=1.9.8
 django-websocket-redis>=0.4.8
 celery>=4.0
+=======
+django>=1.9.8
+django-websocket-redis>=0.4.8
+celery>=4.0
+>>>>>>> 77a57a8db468f62ae7cef00350cac47e6555a259
 ansible>=2.2.0
