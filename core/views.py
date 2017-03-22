@@ -18,4 +18,4 @@ class MyTypicalView(View):
         # 用celery 部分callback不执行，不知为啥， 已改为子进程模式
         playbook_test.delay(facility=facility)
         # playbook_test(facility=facility)
-        # return HttpResponseRedirect('log/%s' % facility)
+        return HttpResponseRedirect('log/%s' % facility)

@@ -1,11 +1,5 @@
 *.pyc
-<<<<<<< HEAD
 *.pyo
 .gitignore
-/.idea
+.idea
 *.sqlite3
-=======
-.gitignore
-/.idea
-*.sqlite3
->>>>>>> 77a57a8db468f62ae7cef00350cac47e6555a259
