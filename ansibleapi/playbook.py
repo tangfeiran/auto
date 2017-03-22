@@ -103,8 +103,8 @@ class PlayBookJob(object):
     # self.run()
 
   def run(self):
-    pb = None
-    pb = ExtendPlaybookExecutor(
+      pb = None
+      pb = ExtendPlaybookExecutor(
         playbooks            = self.playbooks,
         inventory            = self.inventory,
         variable_manager     = self.variable_manager,
@@ -112,8 +112,10 @@ class PlayBookJob(object):
         options              = self.options,
         passwords            = self.passwords,
         stdout_callback      = self.callback
-    )
-    result = pb.run()
+      )
+      result = pb.run()
+      return result
+
 
 # daemo
 if __name__ == "__main__":

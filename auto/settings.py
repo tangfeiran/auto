@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
+CELERY_BROKER_URL = 'redis://localhost:6379/7'
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,7 +27,7 @@ SECRET_KEY = '#!=c=^yzv3hiy6!psg2bm!#lk#dr&sz&ggh(vke54+r_s_(38z'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['172.16.10.53']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
     # http://django-websocket-redis.readthedocs.io/en/latest/installation.html
     'ws4redis',
     'core',
+    'log',
 ]
 
 MIDDLEWARE = [

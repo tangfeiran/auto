@@ -1,0 +1,4 @@
+django>=1.9.8
+django-websocket-redis>=0.4.8
+celery>=4.0
+ansible>=2.2.0

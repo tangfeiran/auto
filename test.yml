@@ -1,11 +1,11 @@
 ---
-- hosts: all
+- hosts: "test"
   gather_facts: "no"
   serial: 1
 
 
   tasks:
-  - name: "当前路径"
+  - name: '{{ cmd }}'
     shell: "pwd"
 
   pre_tasks:
