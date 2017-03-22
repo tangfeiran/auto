@@ -16,7 +16,7 @@ def playbook_test(facility):
                      remote_user='root',
                      group_name="test",
                      forks=20,
-                     ext_vars={"cmd": "test"},
+                     ext_vars=None,
                      passwords='123456',
                      )
     pl.callback = WsExtendCallback(facility)

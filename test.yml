@@ -1,11 +1,10 @@
 ---
-- hosts: "test"
+- hosts: all
   gather_facts: "no"
   serial: 1
 
-
   tasks:
-  - name: '{{ cmd }}'
+  - name: 'pwd-'
     shell: "pwd"
 
   pre_tasks:
@@ -15,4 +14,3 @@
   post_tasks:
   - name: "后置任务"
     shell: echo 2
-
