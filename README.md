@@ -15,8 +15,8 @@ web 发布系统
 ### 测试url
     http://yourip:8000/send
 ### 错误
-    AttributeError: 'Process' object has no attribute '_authkey' < /br>
-    celery此报错，由于celery不支持 multiprocessing.Process < /br>
-    暂时解决方法为修改ansible库文件 site-packages/ansible/executor/process/worker.py： < /br>
-    增加 import billiard < /br>
-    修改 class WorkerProcess(billiard.Process): < /br>
+    AttributeError: 'Process' object has no attribute '_authkey'
+    celery此报错，由于celery不支持 multiprocessing.Process
+    暂时解决方法为修改ansible库文件 site-packages/ansible/executor/process/worker.py:
+    增加 import billiard
+    修改 class WorkerProcess(billiard.Process):
