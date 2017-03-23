@@ -3,6 +3,8 @@ web 发布系统
     celery 异步调用 ansible playbook 执行任务
     自定义 playbook，实时显示日志
 
+### 安装ansibleapi
+    pip install git+https://github.com/tangfeiran/ansibleapi.git
 ### 克隆
     git clone https://github.com/tangfeiran/auto.git
 ### 初始化数据库
