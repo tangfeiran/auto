@@ -1,10 +1,11 @@
-#coding:utf8
+# coding:utf8
+from django import forms
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic.base import View
-from django.http import HttpResponseRedirect
+
 from log.models import Task
 from tasks import playbook_test
-from django import forms
 
 PLAYBOOK_CHOICES = (
     ("test.yml", "test.yml"),
@@ -12,11 +13,12 @@ PLAYBOOK_CHOICES = (
     ("test3.yml", "test3.yml"),
 )
 
+
 class MyForm(forms.Form):
-    playbook = forms.ChoiceField(choices=PLAYBOOK_CHOICES ,label='选择playbook')
+    playbook = forms.ChoiceField(choices=PLAYBOOK_CHOICES, label='选择playbook')
+
 
 class MyTaskView(View):
-
     def get(self, request):
         form = MyForm()
         return render(request, "log/mytask.html", {'form': form})

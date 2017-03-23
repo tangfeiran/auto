@@ -1,8 +1,11 @@
-#coding:utf8
+# coding:utf8
 from __future__ import absolute_import, unicode_literals
-from celery import shared_task
+
 from ansibleapi.playbook import PlayBookJob
+from celery import shared_task
+
 from core.models import WsExtendCallback
+
 
 @shared_task
 def playbook_test(facility, playbook):

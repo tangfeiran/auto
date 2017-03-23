@@ -1,1 +1,16 @@
----- hosts: all  gather_facts: "no"  serial: 1  tasks:  - name: '这是playbook test的第一个task'    shell: "echo hello"  pre_tasks:  - name: "前置任务"    shell: echo 1  post_tasks:  - name: "后置任务"    shell: echo 2
+---
+- hosts: all
+  gather_facts: "no"
+  serial: 1
+
+  tasks:
+  - name: '这是playbook test的第一个task'
+    shell: "echo hello"
+
+  pre_tasks:
+  - name: "前置任务"
+    shell: echo 1
+
+  post_tasks:
+  - name: "后置任务"
+    shell: echo 2

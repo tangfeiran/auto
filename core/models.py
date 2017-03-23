@@ -1,19 +1,15 @@
-#coding:utf-8
+# coding:utf-8
 from __future__ import unicode_literals
 
-from django.db import models
-
-# Create your models here.
-
-from ws4redis.redis_store import RedisMessage
-from ws4redis.publisher import RedisPublisher
 from ansibleapi.callback import ExtendCallback
-# from ansible.executor.task_result import TaskResult
 from ansibleapi.display import MyDisplay
+from ws4redis.publisher import RedisPublisher
+from ws4redis.redis_store import RedisMessage
+
 from log.models import Task, Log
 
-class CallbackLog(object):
 
+class CallbackLog(object):
     def __init__(self, facility, audience, save_sql=True):
         '''
         初始化，实例RedisPublisher对象
@@ -24,7 +20,6 @@ class CallbackLog(object):
         if self.save_sql:
             self.task = Task(id=facility)
         self.redis_publisher = RedisPublisher(facility=facility, **audience)
-
 
     def ws(self, msg):
         message = RedisMessage(msg.encode('utf-8'))
@@ -39,10 +34,9 @@ class CallbackLog(object):
         self.ws(msg)
         self.save(msg)
 
+
 class WsExtendCallback(ExtendCallback):
-
     def __init__(self, facility='default', audience={'broadcast': True}):
-
         super(WsExtendCallback, self).__init__()
         self.log = CallbackLog(facility=facility, audience=audience)
         self._display = MyDisplay(self.log.all)
