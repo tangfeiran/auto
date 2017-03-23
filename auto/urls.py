@@ -16,13 +16,14 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from core.views import MyTypicalView
-from log.views import LogView
+from core.views import MyTaskView
+from log.views import LogView, SqlView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^send$', MyTypicalView.as_view()),
+    url(r'^send$', MyTaskView.as_view()),
     url(r'^log/(\w+)$', LogView.as_view()),
+    url(r'^sql/(\w+)$', SqlView.as_view()),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

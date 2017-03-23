@@ -1,0 +1,16 @@
+---
+- hosts: all
+  gather_facts: "no"
+  serial: 1
+
+  tasks:
+  - name: '当前路径'
+    shell: "pwd"
+
+  pre_tasks:
+  - name: "前置任务"
+    shell: echo 1
+
+  post_tasks:
+  - name: "后置任务"
+    shell: echo 2

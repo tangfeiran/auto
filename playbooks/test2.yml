@@ -4,7 +4,7 @@
   serial: 1
 
   tasks:
-  - name: 'pwd-'
+  - name: '这是playbook test2的第一个task'
     shell: "pwd"
 
   pre_tasks:

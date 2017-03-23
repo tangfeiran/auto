@@ -5,10 +5,10 @@ from ansibleapi.playbook import PlayBookJob
 from core.models import WsExtendCallback
 
 @shared_task
-def playbook_test(facility):
+def playbook_test(facility, playbook):
     # last msg
     # print("last data: %s" % self.redis_publisher.fetch_message(request, facility=self.facility, audience='any'))
-    pl = PlayBookJob(playbooks=['test.yml'],
+    pl = PlayBookJob(playbooks=["playbooks/%s" % playbook],
                      host_list=[
                          '172.16.10.54',
                          '172.16.10.53',

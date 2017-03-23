@@ -1,21 +1,35 @@
 #coding:utf8
 from django.shortcuts import render
-
-# Create your views here.
 from django.views.generic.base import View
 from django.http import HttpResponseRedirect
 from log.models import Task
 from tasks import playbook_test
+from django import forms
 
+PLAYBOOK_CHOICES = (
+    ("test.yml", "test.yml"),
+    ("test2.yml", "test2.yml"),
+    ("test3.yml", "test3.yml"),
+)
 
-class MyTypicalView(View):
+class MyForm(forms.Form):
+    playbook = forms.ChoiceField(choices=PLAYBOOK_CHOICES ,label='选择playbook')
+
+class MyTaskView(View):
 
     def get(self, request):
-        # pass
-        task = Task(stat=u'任务已创建')
-        task.save()
-        facility = task.id
-        # 用celery 部分callback不执行，不知为啥， 已改为子进程模式
-        playbook_test.delay(facility=facility)
-        # playbook_test(facility=facility)
-        return HttpResponseRedirect('log/%s' % facility)
+        form = MyForm()
+        return render(request, "log/mytask.html", {'form': form})
+
+    def post(self, request):
+        form = MyForm(request.POST)
+        if form.is_valid():
+            playbook = form.cleaned_data['playbook']
+            task = Task(stat=u'任务已创建')
+            task.save()
+            facility = task.id
+            playbook_test.delay(facility=facility, playbook=playbook)
+            return HttpResponseRedirect('log/%s' % facility)
+        else:
+            form = MyForm()
+            return render(request, "log/mytask.html", {'form': form})
